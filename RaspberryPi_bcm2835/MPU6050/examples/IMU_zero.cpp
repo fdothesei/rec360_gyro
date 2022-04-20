@@ -214,6 +214,26 @@ void ShowProgress()
 	LinesOut++;
 } // ShowProgress
 
+void ShowResult()
+{ 
+	for (int i = iAx; i <= iGz; i++)
+	{ 
+		printf("%d, ", LowOffset[i]);
+
+		// if (i < iGx)
+		// { 
+		// 	printf("%d, ", LowOffset[i]);
+		// } else {
+		// 	printf("%d, ", LowOffset[i]);
+		// }
+
+		if (i == iGz)
+		{ 
+			printf("\n"); 
+		}
+	}
+} // ShowProgress
+
 void PullBracketsIn()
 { 
 	bool AllBracketsNarrow;
