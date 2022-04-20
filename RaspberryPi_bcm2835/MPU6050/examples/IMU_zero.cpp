@@ -232,7 +232,7 @@ void ShowResult()
 			printf("\n"); 
 		}
 	}
-} // ShowProgress
+} // ShowResult
 
 void PullBracketsIn()
 { 
@@ -365,5 +365,8 @@ int main(int argc, char **argv)
 	PullBracketsIn();
 
 	printf("-------------- done --------------\n\n");
+
+	ShowResult();
+
 	return 0;
 }
