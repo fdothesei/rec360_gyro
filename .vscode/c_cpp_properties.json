@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+				"${workspaceFolder}/bcm2835-1.71/src",
+				"${workspaceFolder}/RaspberryPi_bcm2835/I2Cdev",
+				"${workspaceFolder}/RaspberryPi_bcm2835/MPU6050"
+            ],
+            "defines": [
+                "__GNUC__"
+            ],
+            "compilerPath": "/home/francesco/Develop/cross-pi-gcc-8.3.0-0/bin/arm-linux-gnueabihf-gcc",
+			"cStandard": "c89",
+            "cppStandard": "c++98",
+            "intelliSenseMode": "gcc-arm"
+        }
+    ],
+    "version": 4
+}

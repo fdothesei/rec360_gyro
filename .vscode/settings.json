@@ -1,0 +1,45 @@
+{
+    "files.watcherExclude": {
+        // "**/.git/objects/**": true,
+        // "**/.git/subtree-cache/**": true,
+        "**/.git/**": true,
+        "**/node_modules/**": true,
+        "**/.hg/**": true
+    },
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "C_Cpp.intelliSenseCacheSize": 1024,
+	"[cpp]": {
+        "editor.insertSpaces": false,
+        "editor.detectIndentation": false,
+
+        "editor.suggestSelection": "first",
+		"editor.wordBasedSuggestions": false,
+		"editor.semanticHighlighting.enabled": true,
+
+		"editor.defaultFormatter": "xaver.clang-format",
+        "editor.formatOnSave": true,
+        "editor.suggest.insertMode": "replace",
+        "editor.tabSize": 4,
+        "editor.tabCompletion": "on",
+        "editor.useTabStops": true,
+	},
+	"[json]": {
+		"editor.quickSuggestions": {
+			"strings": true
+		},
+        
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true,
+        "editor.suggest.insertMode": "replace",
+        "editor.tabSize": 2,
+        "editor.tabCompletion": "on",
+        "editor.useTabStops": true,
+    
+	},
+    "cmake.configureOnOpen": false,
+}
