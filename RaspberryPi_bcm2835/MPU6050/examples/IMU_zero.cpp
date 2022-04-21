@@ -137,16 +137,16 @@ void GetSmoothed() {
     // get sums
     accelgyro.getMotion6(&RawValue[iAx], &RawValue[iAy], &RawValue[iAz],
                          &RawValue[iGx], &RawValue[iGy], &RawValue[iGz]);
-    if ((i % 500) == 0) {
-      printf("%c", PERIOD);
-    }
+    // if ((i % 500) == 0) {
+    //   printf("%c", PERIOD);
+    // }
     delayMicroseconds(usDelay);
     for (int j = iAx; j <= iGz; j++) {
       Sums[j] = Sums[j] + RawValue[j];
     }
   } // get sums
-  //    unsigned long usForN = micros() - Start;
-  //    printf(" reading at %d Hz\n", 1000000/((usForN+N/2)/N));
+  //  unsigned long usForN = micros() - Start;
+  //  printf(" reading at %d Hz\n", 1000000/((usForN+N/2)/N));
   for (i = iAx; i <= iGz; i++) {
     Smoothed[i] = (Sums[i] + N / 2) / N;
   }
@@ -154,24 +154,25 @@ void GetSmoothed() {
 
 void Initialize() {
   // initialize device
-  printf("Initializing I2C devices...\n");
+  // printf("Initializing I2C devices...\n");
   I2Cdev::initialize();
 
   // verify connection
-  printf("Testing device connections...\n");
+  // printf("Testing device connections...\n");
   if (!accelgyro.testConnection()) {
-    printf("MPU6050 connection failed\n");
-    return;
+    fprintf(stderr, "MPU6050 connection failed\n");
+    // return;
+    exit(-EXIT_FAILURE);
   }
 
-  printf("MPU6050 connection successful\n");
+  // printf("MPU6050 connection successful\n");
   accelgyro.initialize();
-  printf("Initialization done!\n");
+  // printf("Initialization done!\n");
 } // Initialize
 
 void SetAveraging(int NewN) {
   N = NewN;
-  printf("averaging %d  readings each time\n", N);
+  // printf("averaging %d  readings each time\n", N);
 } // SetAveraging
 
 void SetOffsets(int TheOffsets[6]) {
@@ -205,7 +206,7 @@ void ShowProgress() {
 
 void ShowResult() {
   for (int i = iAx; i <= iGz; i++) {
-    printf("%d, ", LowOffset[i]);
+    printf("%d ", LowOffset[i]);
 
     // if (i < iGx)
     // {
@@ -214,9 +215,9 @@ void ShowResult() {
     // 	printf("%d, ", LowOffset[i]);
     // }
 
-    if (i == iGz) {
-      printf("\n");
-    }
+    // if (i == iGz) {
+    //   printf("\n");
+    // }
   }
 } // ShowResult
 
@@ -225,7 +226,7 @@ void PullBracketsIn() {
   bool StillWorking;
   int NewOffset[6];
 
-  printf("\nclosing in:\n");
+  // printf("\nclosing in:\n");
   AllBracketsNarrow = false;
   ForceHeader();
   StillWorking = true;
@@ -263,7 +264,7 @@ void PullBracketsIn() {
         LowValue[i] = Smoothed[i];
       } // use upper half
     }   // closing in
-    ShowProgress();
+    // ShowProgress();
   } // still working
 } // PullBracketsIn
 
@@ -272,7 +273,7 @@ void PullBracketsOut() {
   int NextLowOffset[6];
   int NextHighOffset[6];
 
-  printf("expanding:\n");
+  // printf("expanding:\n");
   ForceHeader();
 
   while (!Done) {
@@ -302,7 +303,7 @@ void PullBracketsOut() {
         NextHighOffset[i] = HighOffset[i];
       }
     } // got high values
-    ShowProgress();
+    // ShowProgress();
     for (int i = iAx; i <= iGz; i++) {
       LowOffset[i] = NextLowOffset[i];   // had to wait until ShowProgress done
       HighOffset[i] = NextHighOffset[i]; // ..
@@ -322,7 +323,7 @@ int main(int argc, char **argv) {
   PullBracketsOut();
   PullBracketsIn();
 
-  printf("-------------- done --------------\n\n");
+  //  printf("-------------- done --------------\n\n");
 
   ShowResult();
 
